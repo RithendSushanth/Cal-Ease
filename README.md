@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Here’s a detailed `README.md` file for **Cal-Ease**:  
 
-## Getting Started
+```markdown
+# Cal-Ease  
 
-First, run the development server:
+*Cal-Ease* is a sleek and user-friendly scheduling application designed to simplify appointment booking and calendar management. Whether you're an individual, freelancer, or business, Cal-Ease streamlines the scheduling process and enhances productivity.  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Features  
+- **Customizable Event Scheduling**: Create and manage events with ease.  
+- **Availability Management**: Set your availability and let others book slots that work for you.  
+- **Google Calendar Integration**: Sync your events directly with Google Calendar.  
+- **Automated Notifications**: Keep everyone updated with email reminders and confirmations.  
+- **Secure Meeting Links**: Automatically generate and share secure meeting links (e.g., Google Meet).  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack  
+- **Frontend**: [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Shadcn UI](https://shadcn.dev/)  
+- **Backend**: [Prisma](https://www.prisma.io/), [Supabase](https://supabase.com/)  
+- **Authentication**: [AuthJs](https://authjs.dev/)  
+- **Integrations**: [Nylas](https://nylas.com/) for calendar and email functionality  
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🎯 Goals  
+- Simplify appointment scheduling for users and clients.  
+- Deliver a smooth and professional booking experience.  
+- Build a secure, scalable, and visually appealing platform.  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ⚙️ Installation  
 
-## Deploy on Vercel
+### Prerequisites  
+- Node.js >= 16  
+- A PostgreSQL database  
+- A Clerk account for authentication setup  
+- A Nylas account for calendar integrations  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Steps  
+1. Clone the repository:  
+   ```bash  
+   git clone https://github.com/RithendSushanth/Cal-Ease.git  
+   cd cal-ease  
+   ```  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Install dependencies:  
+   ```bash  
+   npm install  
+   ```  
+
+3. Set up environment variables:  
+   Create a `.env` file in the root directory and add the following:  
+   ```env  
+   AUTH_SECRET="eksAMaOcaC2UOC4Y68aDZm5BrGOE6n/KGpnoyQGC+Ro="
+
+# github
+AUTH_GITHUB_ID=Ov23licth2tQQq0a0xn4
+AUTH_GITHUB_SECRET=bdc9fcfd225162e53bcf4839a6a638ab55519dd7
+
+
+AUTH_GOOGLE_ID=1064025986609-hs94mndqids9jpeo4elovg40tgrj3ktv.apps.googleusercontent.com
+AUTH_GOOGLE_SECRET=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
+
+# databaseurl
+DATABASE_URL=""
+DIRECT_URL=""
+
+
+NYLAS_API_SECRET_KEY=
+NYLAS_API_URI=https://api.us.nylas.com
+
+
+NYLAS_CLIENT_ID=
+NEXT_PUBLIC_URL=http://localhost:3000 
+   ```  
+
+4. Run database migrations:  
+   ```bash  
+   npx prisma migrate dev  
+   ```  
+
+5. Start the development server:  
+   ```bash  
+   npm run dev  
+   ```  
+
+6. Visit `http://localhost:3000` to explore the app.  
+
+---
+
+## 📚 Documentation  
+Detailed documentation for API endpoints, integration setup, and more can be found in the [Wiki](https://github.com/your-username/cal-ease/wiki).  
+
+
+---
+### 🔗 Stay Updated  
+Follow the journey as we build Cal-Ease in public!  
