@@ -57,12 +57,12 @@ Here’s a detailed `README.md` file for **Cal-Ease**:
    AUTH_SECRET="eksAMaOcaC2UOC4Y68aDZm5BrGOE6n/KGpnoyQGC+Ro="
 
 # github
-AUTH_GITHUB_ID=Ov23licth2tQQq0a0xn4
-AUTH_GITHUB_SECRET=bdc9fcfd225162e53bcf4839a6a638ab55519dd7
+AUTH_GITHUB_ID=
+AUTH_GITHUB_SECRET=
 
 
-AUTH_GOOGLE_ID=1064025986609-hs94mndqids9jpeo4elovg40tgrj3ktv.apps.googleusercontent.com
-AUTH_GOOGLE_SECRET=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
+AUTH_GOOGLE_ID=
+AUTH_GOOGLE_SECRET=
 
 # databaseurl
 DATABASE_URL=""
