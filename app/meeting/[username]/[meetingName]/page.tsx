@@ -189,6 +189,7 @@ const MeetingPagee = async ({
             />
 
             <div className="my-4 md:my-0">
+              {/* @ts-ignore */}
               <RenderCalendar />
             </div>
 
@@ -196,7 +197,7 @@ const MeetingPagee = async ({
               orientation="vertical"
               className="hidden md:block h-full w-[1px]"
             />
-
+            {/* @ts-ignore */}
             <TimeSlots selectedDate={selectedDate} userName={params.username} />
           </CardContent>
         </Card>

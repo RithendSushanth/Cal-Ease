@@ -5,7 +5,6 @@ import prisma from "./lib/db";
 import { requireUser } from "./lib/hooks";
 import {
   aboutSettingsSchema,
-  eventTypeSchema,
   EventTypeServerSchema,
   onboardingSchema,
 } from "./lib/zodSchemas";
