@@ -3,7 +3,6 @@ import { EmptyState } from "@/app/components/dashboard/EmptyState";
 import { SubmitButton } from "@/app/components/SubmitButton";
 import { auth } from "@/app/lib/auth";
 import { nylas } from "@/app/lib/nylas";
-
 import {
   Card,
   CardContent,
@@ -14,15 +13,11 @@ import {
 import { Separator } from "@/components/ui/separator";
 import prisma from "@/lib/prisma";
 import { format, fromUnixTime } from "date-fns";
-import { Icon, Video } from "lucide-react";
-
-import React from "react";
+import { Video } from "lucide-react";
 
 async function getData(userId: string) {
   const userData = await prisma.user.findUnique({
-    where: {
-      id: userId,
-    },
+    where: { id: userId },
     select: {
       grantId: true,
       grantEmail: true,
@@ -32,10 +27,11 @@ async function getData(userId: string) {
   if (!userData) {
     throw new Error("User not found");
   }
+
   const data = await nylas.events.list({
-    identifier: userData?.grantId as string,
+    identifier: userData.grantId as string,
     queryParams: {
-      calendarId: userData?.grantEmail as string,
+      calendarId: userData.grantEmail as string,
     },
   });
 
@@ -44,7 +40,21 @@ async function getData(userId: string) {
 
 const MeetingsPage = async () => {
   const session = await auth();
-  const data = await getData(session?.user?.id as string);
+  const userId = session?.user?.id;
+
+  // Ensure userId is available
+  if (!userId) {
+    return (
+      <EmptyState
+        title="Unauthorized"
+        description="Please sign in to view your meetings."
+        buttonText="Go to Login"
+        href="/login"
+      />
+    );
+  }
+
+  const data = await getData(userId);
 
   return (
     <>
@@ -67,25 +77,36 @@ const MeetingsPage = async () => {
             {data.data.map((item) => (
               <form key={item.id} action={cancelMeetingAction}>
                 <input type="hidden" name="eventId" value={item.id} />
-                <div className="grid grid-cols-3 justify-between items-center">
+                <div className="grid grid-cols-3 items-center">
                   <div>
                     <p className="text-muted-foreground text-sm">
-                      {/* @ts-ignore */}
-                      {format(fromUnixTime(item.when.startTime), "EEE, dd MMM")}
+                      {format(
+                        // @ts-ignore
+                        fromUnixTime(item.when.startTime),
+                        "EEE, dd MMM"
+                      )}
                     </p>
                     <p className="text-muted-foreground text-xs pt-1">
-                      {/* @ts-ignore */}
-                      {format(fromUnixTime(item.when.startTime), "hh:mm a")} -{" "}
-                      {/* @ts-ignore */}
-                      {format(fromUnixTime(item.when.endTime), "hh:mm a")}
+                      {format(
+                        // @ts-ignore
+                        fromUnixTime(item.when.startTime),
+                        "hh:mm a"
+                      )}{" "}
+                      -{" "}
+                      {format(
+                        // @ts-ignore
+                        fromUnixTime(item.when.endTime),
+                        "hh:mm a"
+                      )}
                     </p>
                     <div className="flex items-center mt-1">
-                      <Video className="size-4 mr-2 text-primary" />{" "}
+                      <Video className="size-4 mr-2 text-primary" />
                       <a
                         className="text-xs text-primary underline underline-offset-4"
                         target="_blank"
-                        {/* @ts-ignore */}
+                        // @ts-ignore
                         href={item.conferencing.details.url}
+                        rel="noopener noreferrer"
                       >
                         Join Meeting
                       </a>
@@ -114,36 +135,3 @@ const MeetingsPage = async () => {
 };
 
 export default MeetingsPage;
-
-{
-  /* <form key={item.id} action={cancelMeetingAction}>
-                <input type="hidden" name="eventId" value={item.id} />
-                <div className="grid grid-cols-3 justify-between items-center">
-                  <div>
-                    <p>
-                      {format(fromUnixTime(item.when.startTime), "EEE, dd MMM")}
-                    </p>
-                    <p>
-                      {format(fromUnixTime(item.when.startTime), "hh:mm a")} -{" "}
-                      {format(fromUnixTime(item.when.endTime), "hh:mm a")}
-                    </p>
-                    <div className="flex items-center">
-                      <Video className="size-4 mr-2 text-primary" />{" "}
-                      <a target="_blank" href={item.conferencing.details.url}>
-                        Join Meeting
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <h2>{item.title}</h2>
-                    <p>You and {item.participants[0].name}</p>
-                  </div>
-                  <SubmitButton
-                    text="Cancel Event"
-                    variant="destructive"
-                    className="w-fit flex ml-auto"
-                  />
-                </div>
-                <Separator className="my-3" />
-              </form> */
-}
