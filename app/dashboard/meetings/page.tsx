@@ -81,6 +81,7 @@ const MeetingsPage = async () => {
                   <div>
                     <p className="text-muted-foreground text-sm">
                       {format(
+                        
                         // @ts-ignore
                         fromUnixTime(item.when.startTime),
                         "EEE, dd MMM"
@@ -88,12 +89,14 @@ const MeetingsPage = async () => {
                     </p>
                     <p className="text-muted-foreground text-xs pt-1">
                       {format(
+
                         // @ts-ignore
                         fromUnixTime(item.when.startTime),
                         "hh:mm a"
                       )}{" "}
                       -{" "}
                       {format(
+
                         // @ts-ignore
                         fromUnixTime(item.when.endTime),
                         "hh:mm a"
@@ -104,6 +107,7 @@ const MeetingsPage = async () => {
                       <a
                         className="text-xs text-primary underline underline-offset-4"
                         target="_blank"
+
                         // @ts-ignore
                         href={item.conferencing.details.url}
                         rel="noopener noreferrer"
